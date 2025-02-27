@@ -55,6 +55,8 @@ class DatePickerThemeData with Diagnosticable {
     this.headerForegroundColor,
     this.headerHeadlineStyle,
     this.headerHelpStyle,
+    this.subheaderNavigationButtonColor,
+    this.subheaderTextStyle,
     this.weekdayStyle,
     this.dayStyle,
     this.dayForegroundColor,
@@ -147,6 +149,9 @@ class DatePickerThemeData with Diagnosticable {
   /// See also:
   ///   [DatePickerDialog.helpText], which specifies the help text.
   final TextStyle? headerHelpStyle;
+
+  final Color? subheaderNavigationButtonColor;
+  final TextStyle? subheaderTextStyle;
 
   /// Overrides the default text style used for the row of weekday
   /// labels at the top of the date picker grid.
@@ -372,6 +377,8 @@ class DatePickerThemeData with Diagnosticable {
     Color? headerForegroundColor,
     TextStyle? headerHeadlineStyle,
     TextStyle? headerHelpStyle,
+    Color? subheaderNavigationButtonColor,
+    TextStyle? subheaderTextStyle,
     TextStyle? weekdayStyle,
     TextStyle? dayStyle,
     MaterialStateProperty<Color?>? dayForegroundColor,
@@ -412,6 +419,8 @@ class DatePickerThemeData with Diagnosticable {
       headerForegroundColor: headerForegroundColor ?? this.headerForegroundColor,
       headerHeadlineStyle: headerHeadlineStyle ?? this.headerHeadlineStyle,
       headerHelpStyle: headerHelpStyle ?? this.headerHelpStyle,
+      subheaderNavigationButtonColor: subheaderNavigationButtonColor ?? this.subheaderNavigationButtonColor,
+      subheaderTextStyle: subheaderTextStyle ?? this.subheaderTextStyle,
       weekdayStyle: weekdayStyle ?? this.weekdayStyle,
       dayStyle: dayStyle ?? this.dayStyle,
       dayForegroundColor: dayForegroundColor ?? this.dayForegroundColor,
@@ -463,6 +472,8 @@ class DatePickerThemeData with Diagnosticable {
       headerForegroundColor: Color.lerp(a?.headerForegroundColor, b?.headerForegroundColor, t),
       headerHeadlineStyle: TextStyle.lerp(a?.headerHeadlineStyle, b?.headerHeadlineStyle, t),
       headerHelpStyle: TextStyle.lerp(a?.headerHelpStyle, b?.headerHelpStyle, t),
+      subheaderNavigationButtonColor: Color.lerp(a?.subheaderNavigationButtonColor, b?.subheaderNavigationButtonColor, t),
+      subheaderTextStyle: TextStyle.lerp(a?.subheaderTextStyle, b?.subheaderTextStyle, t),
       weekdayStyle: TextStyle.lerp(a?.weekdayStyle, b?.weekdayStyle, t),
       dayStyle: TextStyle.lerp(a?.dayStyle, b?.dayStyle, t),
       dayForegroundColor: MaterialStateProperty.lerp<Color?>(
@@ -594,6 +605,8 @@ class DatePickerThemeData with Diagnosticable {
     headerForegroundColor,
     headerHeadlineStyle,
     headerHelpStyle,
+    subheaderNavigationButtonColor,
+    subheaderTextStyle,
     weekdayStyle,
     dayStyle,
     dayForegroundColor,
@@ -640,6 +653,8 @@ class DatePickerThemeData with Diagnosticable {
         other.headerForegroundColor == headerForegroundColor &&
         other.headerHeadlineStyle == headerHeadlineStyle &&
         other.headerHelpStyle == headerHelpStyle &&
+        other.subheaderNavigationButtonColor == subheaderNavigationButtonColor &&
+        other.subheaderTextStyle == subheaderTextStyle &&
         other.weekdayStyle == weekdayStyle &&
         other.dayStyle == dayStyle &&
         other.dayForegroundColor == dayForegroundColor &&
@@ -695,6 +710,8 @@ class DatePickerThemeData with Diagnosticable {
     properties.add(
       DiagnosticsProperty<TextStyle>('headerHelpStyle', headerHelpStyle, defaultValue: null),
     );
+    properties.add(ColorProperty('subheaderNavigationButtonColor', subheaderNavigationButtonColor, defaultValue: null));
+    properties.add(DiagnosticsProperty<TextStyle>('subheaderTextStyle', subheaderTextStyle, defaultValue: null));
     properties.add(
       DiagnosticsProperty<TextStyle>('weekDayStyle', weekdayStyle, defaultValue: null),
     );
@@ -1157,6 +1174,14 @@ class _DatePickerDefaultsM3 extends DatePickerThemeData {
 
   @override
   TextStyle? get headerHelpStyle => _textTheme.labelLarge;
+
+  @override
+  Color? get subheaderNavigationButtonColor => _colors.onSurfaceVariant;
+
+  @override
+  TextStyle? get subheaderTextStyle => _textTheme.titleSmall?.copyWith(
+    color: _colors.onSurfaceVariant,
+  );
 
   @override
   TextStyle? get weekdayStyle => _textTheme.bodyLarge?.apply(
